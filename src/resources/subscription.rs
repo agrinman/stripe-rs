@@ -433,6 +433,12 @@ pub struct CreateSubscription<'a> {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub pending_invoice_item_interval: Option<CreateSubscriptionPendingInvoiceItemInterval>,
 
+    /// The API ID of a promotion code to apply to this subscription.
+    ///
+    /// A promotion code applied to a subscription will only affect invoices created for that particular subscription.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub promotion_code: Option<String>,
+
     /// This field has been renamed to `proration_behavior`.
     ///
     /// `prorate=true` can be replaced with `proration_behavior=create_prorations` and `prorate=false` can be replaced with `proration_behavior=none`.
@@ -502,6 +508,7 @@ impl<'a> CreateSubscription<'a> {
             off_session: Default::default(),
             payment_behavior: Default::default(),
             pending_invoice_item_interval: Default::default(),
+            promotion_code: Default::default(),
             prorate: Default::default(),
             proration_behavior: Default::default(),
             tax_percent: Default::default(),
